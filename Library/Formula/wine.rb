@@ -7,15 +7,15 @@ end
 
 class Wine < Formula
   homepage 'http://winehq.org/'
-  url 'http://downloads.sourceforge.net/project/wine/Source/wine-1.4.tar.bz2'
-  sha256 '99a437bb8bd350bb1499d59183635e58217e73d631379c43cfd0d6020428ee65'
+  url 'http://downloads.sourceforge.net/project/wine/Source/wine-1.5.1.tar.bz2'
+  sha256 '6dc578f9afb3c9a0f2b773bbe09af20578ac6fa514dd0712ecc5d05c766045e6'
   head 'git://source.winehq.org/git/wine.git'
 
   devel do
     # although right now the stable and devel series are in sync, there will be
     # a new devel release soon enough, so let's keep this around
-    url 'http://downloads.sourceforge.net/project/wine/Source/wine-1.4.tar.bz2'
-    sha256 '99a437bb8bd350bb1499d59183635e58217e73d631379c43cfd0d6020428ee65'
+    url 'http://downloads.sourceforge.net/project/wine/Source/wine-1.5.1.tar.bz2'
+    sha256 '6dc578f9afb3c9a0f2b773bbe09af20578ac6fa514dd0712ecc5d05c766045e6'
   end
 
   depends_on 'jpeg'
@@ -90,6 +90,8 @@ EOS
     # Wine tests CFI support by calling clang, but then attempts to use as, which
     # does not work. Use clang for assembling too.
     p << 'https://raw.github.com/gist/1755988/266f883f568c223ab25da08581c1a08c47bb770f/winebuild.patch' if ENV.compiler == :clang
+    p << 'http://dev.enlightenment.fr/~discomfitor/0001-mmap-caching.patch'
+    p << 'http://dev.enlightenment.fr/~discomfitor/0002-shut-up-fixme-warnings.patch'
     p
   end
 
